@@ -11,7 +11,7 @@ object ApiService {
         get() {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
             return retrofit.create(ApiEndPoint::class.java)
