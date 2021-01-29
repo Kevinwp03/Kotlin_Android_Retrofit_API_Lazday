@@ -6,7 +6,7 @@ import retrofit2.create
 
 object ApiService {
 
-    val BASE_URL: String = "https://jsonplaceholder.typicode.com/"
+    val BASE_URL: String = "https://demo.lazday.com/rest-api-sample/"
     val endPoint: ApiEndPoint //diambil dari class ApiEndPoint
         get() {
             val retrofit = Retrofit.Builder()

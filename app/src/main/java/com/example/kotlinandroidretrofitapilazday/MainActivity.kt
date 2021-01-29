@@ -21,14 +21,13 @@ import retrofit2.Response
     }
 
     private fun getDataFromApi(){
-        ApiService.endPoint.getPhotos()
-                .enqueue(object : Callback<List<MainModel>> {
-                    override fun onResponse(call: Call<List<MainModel>>, response: Response<List<MainModel>>) {
-                        val result = response.body()
-                        showPhotos(result!!)
+        ApiService.endPoint.getData()
+                .enqueue(object : Callback <MainModel> {
+                    override fun onResponse(call: Call <MainModel>, response: Response <MainModel>) {
+                        showData( response.body()!! )
                     }
 
-                    override fun onFailure(call: Call<List<MainModel>>, t: Throwable) {
+                    override fun onFailure(call: Call<MainModel>, t: Throwable) {
                         printLog(t.toString())
                     }
                 })
@@ -40,9 +39,10 @@ import retrofit2.Response
     }
 
      //Merapikan hasil di debug
-     private fun showPhotos(photos: List<MainModel>){
-         for (photo in photos) { // Loop, photo digunakan untuk mengambil setiap 1 gambar di setiap photos
-             printLog(" url : ${photo.url}")
+     private fun showData(data: MainModel){
+         val results = data.result
+         for (result in results) { // Loop, photo digunakan untuk mengambil setiap 1 gambar di setiap photos
+             printLog(" title : ${result.title}")
          }
      }
 }

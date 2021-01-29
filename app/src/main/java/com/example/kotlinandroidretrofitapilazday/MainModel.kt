@@ -1,4 +1,5 @@
 package com.example.kotlinandroidretrofitapilazday
 
-data class MainModel (val id: Int, val title: String, val url: String) // tambahkan data
-// data class memudahkan untuk mengambil nilai nilai
+data class MainModel (val result: ArrayList<Result>){
+    data class Result (val id: Int, val title: String, val image: String)
+}
