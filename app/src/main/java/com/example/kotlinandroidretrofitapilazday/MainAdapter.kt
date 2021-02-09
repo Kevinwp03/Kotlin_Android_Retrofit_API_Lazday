@@ -1,9 +1,11 @@
 package com.example.kotlinandroidretrofitapilazday
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.adapter_main.view.*
 
 class MainAdapter(val results: ArrayList<MainModel.Result>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() { //isi contstracnya di parameter
@@ -14,6 +16,14 @@ class MainAdapter(val results: ArrayList<MainModel.Result>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) { // parsing data, ke layout,
         val result = results[position]              // gunakan ini, jika ada banyak data yg akan di ambil
         holder.view.textView.text = result.title
+        Log.d("MainAdapter", "result.image: ${result.image}")
+        //Glide nya
+        Glide.with( holder.view)
+                .load(result.image)
+                .placeholder(R.drawable.img_placeholder)
+                .error(R.drawable.img_placeholder) // jadi kalau gambarnya error akan menampilkan gambar ini (blank)
+                .centerCrop() // gambar akan di crop sesuai ukuran di adapter_main
+                .into(holder.view.imageView)
     }
 
     override fun getItemCount() = results.size
